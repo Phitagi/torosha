@@ -1,19 +1,19 @@
 <?php 
 		session_start();
-		include("cmfunc.php");
+		include("dhar.php");
 		$error="";
 		date_default_timezone_set('Africa/Nairobi');
 
 		if (isset($_POST['button'])) {
-		$img=$_POST['dimage'];
-		$category=$_POST['dcategory'];
+		$img=$_POST['image'];
+		$category=$_POST['dgory'];
 
 		}
 	
    		if (isset($_POST['toka'])) {
     		$_SESSION['id']=NULL;
-    		setcookie('uname','',time()-1); 
-    		header("location:cm.php");
+    		setcookie('ume','',time()-1); 
+    		header("location:c.php");
     	}
     	
     
@@ -27,38 +27,19 @@
 
 
 		if (isset($_POST['rut'])) {
-			$id=$_SESSION['baye'];
-			$name=mysqli_real_escape_string($conn,$_POST['name']);
-			$eid=mysqli_real_escape_string($conn,$_POST['id']);
-			$sid=mysqli_real_escape_string($conn,$_POST['oid']);
-			$reply=mysqli_real_escape_string($conn,$_POST['reply']);
-			$date=mysqli_real_escape_string($conn,$_POST['date']);
-			$not="".$sename." commented on your demand.";
-			$time=date("H:i:s");
-			$ntype="demreply";
-			$e=mysqli_query($conn,"INSERT INTO xyreplies(sid,sename,pid,reply,datee) VALUES('$id','$name','$eid','$reply','$date') ");
-			$z=mysqli_query($conn,"INSERT INTO xynots(rid,notification,Type,sid,sname,dat,tim,nid) VALUES('$id','$not','$ntype','$oid','$name','$date','$time','$eid')");
-		}
-		if (isset($_POST['rut2'])) {	
-            $id=$_SESSION['baye'];
-			$id=mysqli_real_escape_string($conn,$_POST['id']);
-			$name=mysqli_real_escape_string($conn,$_POST['name']);
-			$eid=mysqli_real_escape_string($conn,$_POST['eid']);
+			$gd=$_SESSION['baye'];
+			$me=mysqli_real_escape_string($conn,$_POST['me']);
+			$ed=mysqli_real_escape_string($conn,$_POST['id']);
 			$oid=mysqli_real_escape_string($conn,$_POST['oid']);
-            $commt=mysqli_real_escape_string($conn,$_POST['comment']);
-            $cell=mysqli_real_escape_string($conn,$_POST['recell']);
+			$rp=mysqli_real_escape_string($conn,$_POST['r']);
 			$date=mysqli_real_escape_string($conn,$_POST['date']);
 			$not="".$sename." commented on your demand.";
 			$time=date("H:i:s");
-			$ntype="mreply";
-			$cat="nai";
-            if (empty($commt)) {
-                $error="Whats your comment?";
-             } else if (!empty($commt) && $cell > 10 && is_numeric($cell)) {
-                $ff=mysqli_query($conn,"INSERT INTO ands(seid,caname,hcell,mand,dat) VALUES('$id','$name','$cell','$commt','$date')");
-                $z=mysqli_query($conn,"INSERT INTO xynots(rid,notification,Type,sid,sname,dat,tim,nid) VALUES('$id','$not','$ntype','$oid','$name','$date','$time','$eid')");
-            }  
+			$ntip="demreply";
+			$e=mysqli_query($conn,"INSERT INTO x(pid,seme,id,re,dat) VALUES('$gd','$me','$ed','$rp','$date') ");
+			$z=mysqli_query($conn,"INSERT INTO y(oid,cation,Type,si,me,d,t,ni) VALUES('$gd','$not','$ntip','$oid','$me','$date','$time','$eid')");
 		}
+		
 
 
 ?>
@@ -69,7 +50,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="bootstrapx/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="cm.css">
+	<link rel="stylesheet" type="text/css" href="dm.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="bootstrapx/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="jquery.js"></script>
@@ -1604,10 +1585,10 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			function tt() {
-				$(".cartcount").load("cart.php .count");
+				$(".cartcount").load("rt.php .count");
 			}
 			function oc() {
-				$(".ordercount").load("orders.php .ocount");
+				$(".ordercount").load("rs.php .ocount");
 			}
 			setInterval(function(){
 				oc();
@@ -1699,11 +1680,11 @@
    					
    				echo "<ul class='headerul2'>";
                   $d=$_SESSION['id'];
-                  $y=mysqli_query($conn,"SELECT * FROM usee WHERE d=$d");
+                  $y=mysqli_query($conn,"SELECT * FROM u WHERE d=$d");
                   $yy=mysqli_fetch_assoc($y);
                   $status=$yy['status'];
                   $status2=$yy['status2'];
-                  $r=mysqli_query($conn,"SELECT * FROM nots WHERE status=0");
+                  $r=mysqli_query($conn,"SELECT * FROM no WHERE status=0");
                   $nnum=mysqli_num_rows($r);
                if($status=="1" & $status2=="1"){
                   echo"
@@ -1754,7 +1735,7 @@
    						$id=$_COOKIE['id'];
    						}
    						else{$id=$_SESSION['id'];}
-   						$s=mysqli_query($conn,"SELECT * FROM nots WHERE rid='$id' ORDER BY id DESC");
+   						$s=mysqli_query($conn,"SELECT * FROM no WHERE rid='$id' ORDER BY id DESC");
    					
    					echo"<div class='notbigdiv hide' style=''>";
    						while ($ss=mysqli_fetch_assoc($s)) {
@@ -1777,7 +1758,7 @@
    								</div>";
    							}
    							else if ($type="postcomreply") {
-   								$n=mysqli_query($conn,"SELECT FROM comms WHERE d='$nid'");
+   								$n=mysqli_query($conn,"SELECT FROM cs WHERE d='$nid'");
    								$nn=mysqli_fetch_assoc($n);
    								$tid=$nn['did'];
    								$com=$nn['comment'];
@@ -2068,7 +2049,7 @@
 								var tarea=$('.tarea').val();
 								var date=$('.date').val();
 								var commentbut=$('.commentbut').val();
-								$.post("cmdemands.php",{
+								$.post("cds.php",{
 									tarea:tarea,
 									date:date,
 									commentbut:commentbut
@@ -2082,7 +2063,7 @@
 								var sname=$('.sname').val();
 								var sid=$('.sid').val();			
 								var commentbut2=$('.commentbut2').val();
-								$.post("cmdemands.php",{
+								$.post("cds.php",{
 									tarea:tarea,
 									date:date,
 									dcell:dcell,
@@ -2102,7 +2083,7 @@
 								var dsid=$(this).children('.dsid').val();
 								var reply=$(this).children('.tea').val();
 								var rbut=$(this).children('.rbut').val();
-								$.post('cmdemands.php',{
+								$.post('cms.php',{
 									date:date,
 									sename:sename,
 									sid:sid,
@@ -2120,8 +2101,8 @@
 								var dsid=$(this).children('.dsid').val();
 								var reply=$(this).children('.reply').val();
 								var rbut2=$(this).children('.rbut2').val();
-								$.post('cmdemands.php',{
-									date:date,
+								$.post('cds.php',{
+									date:dae,
 									sename:sename,
 									sid:sid,
 									dsid:dsid,
@@ -2133,7 +2114,7 @@
 								var searchword="";
 							function demsearch() {
 								searchword=$(this).children('.demsearchword').val();
-								$.post('cmdemandsx.php',{
+								$.post('cds.php',{
 									search:searchword
 								});
 							}
@@ -2145,7 +2126,7 @@
                      get(searchword);
 							
 							function get(search) {
-								$.post('cmdemandsx.php',{
+								$.post('cds.php',{
 									search:search,
 									
 								},function(data){
@@ -2158,7 +2139,7 @@
                         var did=$(this).children('.deldid').val();
                         var deldembut=$(this).children('.deletedem').val();
                         
-                        $.post("cmdemands.php",{
+                        $.post("cds.php",{
                            did:did,
                            deldembut:deldembut
                         });
@@ -2179,7 +2160,7 @@
 						$(document).ready(function(){
 							function de() {
 								var rid=$(this).children('.ri').val();
-								$.post("cmdemands.php",{
+								$.post("cds.php",{
 									rid:rid
 								});
 							};
